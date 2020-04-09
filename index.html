@@ -192,7 +192,6 @@
 
 
     <div class="container">
-
         <div class="row row-content">
             <div class="col">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -239,8 +238,15 @@
                     <a href="#myCarousel" class="carousel-control-next" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" href="#myCarousel"></span>
                     </a>
+                     
+                    
+                        <button class="btn btn-danger btn-sm" id="carouselButtons">
+                            <span class="fa fa-pause"></span>
+                        </button>
+                      
+
                 </div>
-            </div>
+            </div> 
         </div>
 
         <div class="row row-content align-items-center">
@@ -342,15 +348,28 @@
 <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
 <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
 <script>
-$(document).ready(function(){
-    $("#non-smoking").click(function(){
-        $(this).button('toggle');
+    $(document).ready(function(){
+        $("#myCarousel").carousel( { interval: 2000 } );
+       
+         $("#carouselButtons").click(function()
+         {
+          if($("#carouselButtons").children('span').hasClass("fa-pause"))
+          {
+              $("#myCarousel").carousel('pause');
+              $("#carouselButtons").children('span').removeClass("fa-pause");
+              $("#carouselButtons").children('span').addClass("fa-play");
+          }
+          else if($("#carouselButtons").children('span').hasClass("fa-play"))
+          {
+            $("#myCarousel").carousel('cycle');
+              $("#carouselButtons").children('span').removeClass("fa-play");
+              $("#carouselButtons").children('span').addClass("fa-pause");
+          }
+         });
+
     });
-    $("#smoking").click(function(){
-        $(this).button('toggle');
-    });
-});
 </script>
 </body>
 
